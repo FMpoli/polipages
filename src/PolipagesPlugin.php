@@ -2,8 +2,11 @@
 
 namespace Detit\Polipages;
 
-use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Filament\Contracts\Plugin;
+use Detit\Polipages\Resources\PageResource;
+
+
 
 class PolipagesPlugin implements Plugin
 {
@@ -14,7 +17,10 @@ class PolipagesPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        //
+        $panel
+            ->resources([
+                PageResource::class,
+            ]);
     }
 
     public function boot(Panel $panel): void

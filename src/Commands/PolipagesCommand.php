@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Detit\Polipages\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class PolipagesCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'polipages';
 
     public $description = 'My command';
 

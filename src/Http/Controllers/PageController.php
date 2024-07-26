@@ -13,6 +13,7 @@ class PageController extends Controller
         if ($slug == '/') {
             $page = Page::where('slug->' . app()->getLocale(), $slug)->first();
         } else {
+
             $page = Page::where('slug->' . app()->getLocale(), $slug)->first();
         }
 

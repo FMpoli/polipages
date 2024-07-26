@@ -31,6 +31,7 @@ class Page extends Model
     ];
 
     protected $casts = [
+        'content' => 'array',
         'title' => 'array',
         'slug' => 'array',
         'meta_title' => 'array',
@@ -40,70 +41,44 @@ class Page extends Model
 
     public function getContentAttribute($value)
     {
-        if (empty($value)) {
-            return [];
-        }
-
         $content = is_string($value) ? json_decode($value, true) : $value;
 
-        if (is_array($content)) {
-            foreach ($content as $key => &$langContent) {
-
-                if (is_string($langContent)) {
-                    $langContent = json_decode($langContent, true);
+        foreach ($content as $lang => $blocks) {
+            if (is_array($blocks)) {
+                foreach ($blocks as $key => $block) {
+                    if (isset($block['data']) && is_array($block['data'])) {
+                        if (isset($block['data']['media'])) {
+                            $content[$lang][$key]['data']['media'] = $this->normalizeMedia($block['data']['media']);
+                        }
+                        if (isset($block['data']['buttons'])) {
+                            $content[$lang][$key]['data']['buttons'] = $this->normalizeButtons($block['data']['buttons']);
+                        }
+                    }
                 }
-
-                if (isset($langContent['data']['video']) && !is_array($langContent['data']['video'])) {
-                    $langContent['data']['video'] = [$langContent['data']['video']];
-                }
-
-                if (!is_array($langContent)) {
-                    $langContent = [$langContent];
-                }
-
             }
         }
 
         return $content;
     }
 
-    // public function setContentAttribute($value)
-    // {
-    //     if (empty($value)) {
-    //         $this->attributes['content'] = json_encode([]);
-    //         return;
-    //     }
+    private function normalizeMedia($media)
+    {
+        // Normalizza il campo media
+        if (is_array($media)) {
+            return reset($media);
+        }
+        return $media;
+    }
 
-    //     $content = is_string($value) ? json_decode($value, true) : $value;
-
-    //     if (is_array($content)) {
-    //         foreach ($content as $key => &$langContent) {
-
-    //             if (is_string($langContent)) {
-    //                 $langContent = json_decode($langContent, true);
-    //             }
-
-    //             if (isset($langContent['data']['video']) && !is_array($langContent['data']['video'])) {
-    //                 $langContent['data']['video'] = [$langContent['data']['video']];
-    //             }
-
-    //             if (!is_array($langContent)) {
-    //                 $langContent = [$langContent];
-    //             }
-    //         }
-    //     }
-
-    //     $this->attributes['content'] = json_encode($content);
-    // }
-
-    /**
-     * Get the options for generating the slug.
-     */
-    // public function getSlugOptions() : SlugOptions
-    // {
-    //     return SlugOptions::create()
-    //         ->generateSlugsFrom('title')
-    //         ->saveSlugsTo('slug');
-    // }
+    private function normalizeButtons($buttons)
+    {
+        // Normalizza il campo buttons
+        if (is_array($buttons)) {
+            foreach ($buttons as $button) {
+                return $button;
+            }
+        }
+        return $buttons;
+    }
 
 }

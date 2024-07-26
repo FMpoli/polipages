@@ -17,4 +17,5 @@ class CreatePage extends CreateRecord
             // ...
         ];
     }
+
 }

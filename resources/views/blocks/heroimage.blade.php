@@ -1,8 +1,13 @@
+@php
+    $media = $block['data']['media'];
+    $rmedia = is_array($media) ? reset($media) : $media;
+    $mediaValue = is_array($media) ? $rmedia['id']: $media;
+@endphp
 <section style="background-color: {{ $block['data']['background_color'] }}">
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         @if($block['data']['image_position'] == 'left' && isset($block['data']['media']))
             <div class="flex-shrink-0 mb-4 lg:col-span-5 lg:flex lg:justify-start md:mb-0">
-                <x-curator-glider :media="$block['data']['media']" class="object-cover w-full h-auto max-h-96 rounded-3xl lg:w-auto"/>
+                <x-curator-glider :media="$mediaValue" class="object-cover w-full h-auto max-h-96 rounded-3xl lg:w-auto"/>
             </div>
             <div class="flex flex-col lg:col-span-7 lg:ml-auto lg:items-start">
                 <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">{{ $block['data']['title'] }}</h1>
@@ -34,7 +39,7 @@
                 </div>
             </div>
             <div class="flex-shrink-0 mt-4 lg:col-span-5 lg:flex lg:justify-end md:mt-0">
-                <x-curator-curation :media="$block['data']['media']" curation="heroImage" class="object-cover w-full h-auto max-h-96 rounded-3xl lg:w-auto"/>
+                <x-curator-glider :media="$mediaValue" curation="heroImage" class="object-cover w-full h-auto max-h-96 rounded-3xl lg:w-auto"/>
             </div>
         @else
             <div class="flex flex-col lg:col-span-12 lg:items-start">

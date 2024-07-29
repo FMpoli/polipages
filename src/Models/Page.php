@@ -42,6 +42,10 @@ class Page extends Model
     public function getContentAttribute($value)
     {
         $content = is_string($value) ? json_decode($value, true) : $value;
+        if($content === null) {
+            return [];
+        }
+
 
         foreach ($content as $lang => $blocks) {
             if (is_array($blocks)) {

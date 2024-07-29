@@ -2,6 +2,7 @@
     $videoUrl = is_array($block['data']['video']) ? reset($block['data']['video']) : $block['data']['video'];
     // $preset = new ThumbnailPreset();
 @endphp
+
 <section style="background-color: {{ $block['data']['background_color'] }}">
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 [&_[x-cloak]]:hidden" x-data="{ modalOpen: false }">
         @if($block['data']['video_position']== 'left')
@@ -16,7 +17,7 @@
                     >
 
                         {{-- @if ($media->hasCuration('thumbnail')) --}}
-                            <x-curator-curation :media="$block['data']['video_thumbnail']" curation="heroImage" class="w-full rounded-3xl lg:w-auto"/>
+                            <x-curator-glider :media="$block['data']['video_thumbnail']" curation="heroImage" class="w-full rounded-3xl lg:w-auto"/>
                         {{-- @else
                             <x-curator-glider
                                 class="object-cover w-auto"
@@ -102,7 +103,7 @@
                         aria-controls="modal"
                         aria-label="Watch the video"
                     >
-                    <x-curator-curation :media="$block['data']['video_thumbnail']" curation="heroImage" class="w-full rounded-3xl lg:w-auto"/>
+                    <x-curator-glider :media="$block['data']['video_thumbnail']" curation="heroImage" class="w-full rounded-3xl lg:w-auto"/>
                                             <!-- Play icon -->
                         <svg class="absolute transition-transform duration-300 ease-in-out pointer-events-none group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="72" height="72">
                             <circle class="fill-white" cx="36" cy="36" r="36" fill-opacity=".8" />

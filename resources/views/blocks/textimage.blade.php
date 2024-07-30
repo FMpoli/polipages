@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="flex-shrink-0 mt-4 lg:col-span-5 lg:flex lg:justify-end md:mt-0">
-                <x-curator-curation :media="$block['data']['media']" curation="heroImage" class="object-cover w-full h-auto max-h-96 rounded-3xl lg:w-auto"/>
+                <x-curator-glider :media="$block['data']['media']" curation="heroImage" class="object-cover w-full h-auto max-h-96 rounded-3xl lg:w-auto"/>
             </div>
         @else
             <div class="flex flex-col lg:col-span-full lg:items-start">

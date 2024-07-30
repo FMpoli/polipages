@@ -1,5 +1,7 @@
 @php
     $videoUrl = is_array($block['data']['video']) ? reset($block['data']['video']) : $block['data']['video'];
+    $mediaUrl = is_array($block['data']['video_thumbnail']) ? reset($block['data']['video_thumbnail']) : $block['data']['video_thumbnail'];
+    $mediaUrl = (int)$mediaUrl;
     // $preset = new ThumbnailPreset();
 @endphp
 
@@ -16,16 +18,8 @@
                         aria-label="Watch the video"
                     >
 
-                        {{-- @if ($media->hasCuration('thumbnail')) --}}
-                            <x-curator-glider :media="$block['data']['video_thumbnail']" curation="heroImage" class="w-full rounded-3xl lg:w-auto"/>
-                        {{-- @else
-                            <x-curator-glider
-                                class="object-cover w-auto"
-                                :media="$block['data']['video_thumbnail']"
-                                :width="$preset->getWidth()"
-                                :height="$preset->getHeight()"
-                            />
-                        @endif --}}
+                            <x-curator-glider :media="$mediaUrl" curation="heroImage" class="w-full rounded-3xl lg:w-auto"/>
+
                         <!-- Play icon -->
                         <svg class="absolute transition-transform duration-300 ease-in-out pointer-events-none group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="72" height="72">
                             <circle class="fill-white" cx="36" cy="36" r="36" fill-opacity=".8" />

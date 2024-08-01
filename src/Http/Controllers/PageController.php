@@ -10,12 +10,12 @@ class PageController extends Controller
     public function show($slug = '/')
     {
         // Se lo slug è vuoto, imposta lo slug alla home page
-        if ($slug == '/') {
-            $page = Page::where('slug->' . app()->getLocale(), $slug)->first();
-        } else {
+        // if ($slug == '/') {
+        //     $page = Page::where('slug->' . app()->getLocale(), $slug)->first();
+        // } else {
 
             $page = Page::where('slug->' . app()->getLocale(), $slug)->first();
-        }
+        // }
 
         if ($page) {
             // Log per vedere il contenuto della pagina

@@ -2,35 +2,36 @@
 
 namespace Detit\Polipages\Resources;
 
-use Detit\Polipages\Resources\PageResource\Pages;
-use Detit\Polipages\Models\Page;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
+use Detit\Polipages\Models\Page;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Tabs;
 
-use Filament\Forms\Set;
-use Filament\Forms\Get;
-use Illuminate\Support\Str;
 use Filament\Forms\Components\Actions\Action;
+use Filament\Resources\Concerns\Translatable;
+use Detit\Polipages\Resources\PageResource\Pages;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-use Detit\Polipages\Resources\PageResource\Blocks\Anchor;
-use Detit\Polipages\Resources\PageResource\Blocks\CallToAction;
 use Detit\Polipages\Resources\PageResource\Blocks\Faq;
+use Detit\Polipages\Resources\PageResource\Blocks\Anchor;
 use Detit\Polipages\Resources\PageResource\Blocks\Features;
-use Detit\Polipages\Resources\PageResource\Blocks\HeroWithBckImage;
-use Detit\Polipages\Resources\PageResource\Blocks\HeroWithBckVideo;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Detit\Polipages\Resources\PageResource\Blocks\ContactForm;
+use Detit\Polipages\Resources\PageResource\Blocks\CallToAction;
 use Detit\Polipages\Resources\PageResource\Blocks\HeroWithImage;
 use Detit\Polipages\Resources\PageResource\Blocks\HeroWithVideo;
 use Detit\Polipages\Resources\PageResource\Blocks\TextWithImage;
-use Filament\Resources\Concerns\Translatable;
+use Detit\Polipages\Resources\PageResource\Blocks\HeroWithBckImage;
+use Detit\Polipages\Resources\PageResource\Blocks\HeroWithBckVideo;
 
 class PageResource extends Resource
 {
@@ -100,6 +101,7 @@ class PageResource extends Resource
                                     HeroWithImage::make(),
                                     HeroWithVideo::make(),
                                     TextWithImage::make(),
+                                    ContactForm::make(),
 
                             ]),
                         ]),

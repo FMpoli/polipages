@@ -30,6 +30,7 @@ class PolipagesServiceProvider extends PackageServiceProvider
          */
         $package->name(static::$name)
             ->hasCommands($this->getCommands())
+            ->hasRoute('web')
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishConfigFile()

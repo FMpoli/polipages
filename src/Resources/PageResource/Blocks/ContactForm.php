@@ -16,7 +16,11 @@ class ContactForm
             ->schema([
                 TextInput::make('send_to')
                     ->label('Send to email')
+                    ->email()
                     ->placeholder('Enter the destination email')
+                    ->required(),
+                TextInput::make('subject')
+                    ->label('Subject')
                     ->required(),
                 TextInput::make('short_text')
                     ->label('Short text'),

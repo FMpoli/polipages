@@ -3,7 +3,6 @@ namespace Detit\Polipages\Http\Controllers;
 
 use Detit\Polipages\Models\Page;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Log;
 
 class PageController extends Controller
 {
